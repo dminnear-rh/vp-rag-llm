@@ -32,8 +32,6 @@ spec:
           volumeMounts:
             - name: model-cache
               mountPath: {{ .Values.persistence.mountPath }}
-            - name: tmp-cache
-              mountPath: /.cache
           env:
             - name: HF_HUB_ENABLE_HF_TRANSFER
               value: "1"
@@ -50,8 +48,6 @@ spec:
         - name: model-cache
           persistentVolumeClaim:
             claimName: {{ include "vllm-mistral.fullname" . }}-model-cache
-        - name: tmp-cache
-          emptyDir: {}
       nodeSelector:
         {{- toYaml .Values.nodeSelector | nindent 8 }}
       tolerations:
