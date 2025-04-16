@@ -33,6 +33,11 @@ spec:
           env:
             - name: HF_HUB_ENABLE_HF_TRANSFER
               value: "1"
+            - name: HF_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hf-secret
+                  key: hf_token
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
