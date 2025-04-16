@@ -20,6 +20,7 @@ clusterGroup:
 
   projects:
     - rag-llm
+    - nfd
 
   applications:
     qdrant:
@@ -41,3 +42,9 @@ clusterGroup:
       namespace: rag-llm
       project: rag-llm
       path: charts/rag-api
+
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      project: nfd
+      path: charts/nfd
