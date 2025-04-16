@@ -3,6 +3,20 @@ clusterGroup:
 
   namespaces:
     - rag-llm
+    - openshift-nfd
+    - nvidia-gpu-operator
+
+  subscriptions:
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      channel: stable
+
+    nvidia:
+      name: gpu-operator-certified
+      namespace: nvidia-gpu-operator
+      channel: v24.6
+      source: certified-operators
 
   projects:
     - rag-llm
