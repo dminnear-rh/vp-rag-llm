@@ -15,9 +15,7 @@ spec:
         app: {{ include "vllm-mistral.name" . }}
     spec:
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
+        fsGroup: 1000670000
       containers:
         - name: mistral-vllm
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
