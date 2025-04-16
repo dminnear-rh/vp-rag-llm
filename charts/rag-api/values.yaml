@@ -8,5 +8,5 @@ image:
 
 loader:
   image: quay.io/dminnear/vp-embeddings-loader
-  tag: MiniLM-L6-v2
+  tag: bge-large-en-v1.5
   pullPolicy: IfNotPresent
