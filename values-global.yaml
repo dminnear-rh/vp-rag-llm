@@ -1,0 +1,13 @@
+global:
+  pattern: vp-rag-llm
+
+  options:
+    useCSV: false
+    syncPolicy: Automatic
+    installPlanApproval: Automatic
+
+main:
+  clusterGroupName: prod
+  multiSourceConfig:
+    enabled: true
+    clusterGroupChartVersion: "0.9.*"

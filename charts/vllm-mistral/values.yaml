@@ -30,3 +30,8 @@ nodeSelector:
 service:
   type: ClusterIP
   port: 8000
+
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+  remoteKey: secret/data/global/hfmodel
