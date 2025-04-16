@@ -12,9 +12,7 @@ clusterGroup:
       name: qdrant
       namespace: rag-llm
       project: rag-llm
-      repoURL: https://qdrant.github.io/qdrant-helm
-      chart: qdrant
-      chartVersion: 1.13.6
+      path: charts/qdrant
       extraValueFiles:
         - /values-qdrant.yaml
 

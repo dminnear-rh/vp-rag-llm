@@ -57,12 +57,3 @@ affinity:
               values:
                 - qdrant
         topologyKey: "kubernetes.io/hostname"
-
-containerSecurityContext:
-  runAsNonRoot: true
-  allowPrivilegeEscalation: false
-  privileged: false
-  readOnlyRootFilesystem: true
-
-podSecurityContext:
-  fsGroupChangePolicy: Always

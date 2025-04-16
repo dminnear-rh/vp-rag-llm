@@ -1,0 +1,9 @@
+# Modified copy of the Qdrant Helm chart
+# Source: https://github.com/qdrant/qdrant-helm
+# License: Apache 2.0
+apiVersion: v2
+name: qdrant
+description: Qdrant - Vector Database for the next generation of AI applications.
+type: application
+version: 1.13.6
+appVersion: v1.13.6
