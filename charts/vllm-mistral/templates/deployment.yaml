@@ -33,7 +33,7 @@ spec:
           env:
             - name: HF_HUB_ENABLE_HF_TRANSFER
               value: "1"
-            - name: TRANSFORMERS_CACHE
+            - name: HF_HOME
               value: {{ .Values.persistence.mountPath }}
             - name: HF_TOKEN
               valueFrom:
