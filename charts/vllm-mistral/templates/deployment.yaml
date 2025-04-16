@@ -25,6 +25,8 @@ spec:
             - "bfloat16"
             - "--served-model-name"
             - "mistral"
+            - "--tokenizer-mode"
+            - "mistral"
           ports:
             - containerPort: 8000
           volumeMounts:
