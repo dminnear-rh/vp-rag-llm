@@ -53,6 +53,7 @@ spec:
             - "12"
           deviceLabelFields:
             - "class"
+            - "vendor"
   customConfig:
     configData: |
       - name: "more.kernel.features"
