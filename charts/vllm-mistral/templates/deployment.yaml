@@ -35,7 +35,7 @@ spec:
               value: "1"
             - name: HF_HOME
               value: {{ .Values.persistence.mountPath }}
-            - name: FLASHINFER_CACHE_DIR
+            - name: FLASHINFER_WORKSPACE_DIR
               value: {{ printf "%s/flashinfer" .Values.persistence.mountPath }}
             - name: HF_TOKEN
               valueFrom:
