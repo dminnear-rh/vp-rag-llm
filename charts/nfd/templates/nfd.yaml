@@ -5,7 +5,6 @@ metadata:
   namespace: openshift-nfd
 spec:
   instance: ""
-  topologyupdater: false
   operand:
     image: registry.redhat.io/openshift4/ose-node-feature-discovery-rhel9:v4.18
     imagePullPolicy: Always
@@ -54,8 +53,3 @@ spec:
           deviceLabelFields:
             - "class"
             - "vendor"
-  customConfig:
-    configData: |
-      - name: "more.kernel.features"
-        matchOn:
-          - loadedKMod: ["example_kmod3"]
