@@ -3,6 +3,8 @@ clusterGroup:
   isHubCluster: true
 
   namespaces:
+    - vault
+    - golang-external-secrets
     - rag-llm
     - openshift-nfd
     - nvidia-gpu-operator
@@ -22,8 +24,23 @@ clusterGroup:
   projects:
     - rag-llm
     - nfd
+    - hub
 
   applications:
+    vault:
+      name: vault
+      namespace: vault
+      project: hub
+      chart: hashicorp-vault
+      chartVersion: 0.1.*
+
+    golang-external-secrets:
+      name: golang-external-secrets
+      namespace: golang-external-secrets
+      project: hub
+      chart: golang-external-secrets
+      chartVersion: 0.1.*
+
     qdrant:
       name: qdrant
       namespace: rag-llm
