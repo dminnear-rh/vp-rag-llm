@@ -149,10 +149,10 @@ persistence:
 # creating a separate volume of the same size as your main volume so that your
 # cluster won't crash if the snapshot is too big.
 snapshotPersistence:
-  enabled: true
+  enabled: false
   accessModes: ["ReadWriteOnce"]
   size: 10Gi
-
+  annotations: {}
   # snapshotsVolumeName: qdrant-snapshots
   # snapshotsSubPath: ""
   # You can change the storageClassName to ensure snapshots are saved to cold storage.
