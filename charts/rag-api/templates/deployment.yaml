@@ -18,4 +18,9 @@ spec:
         - name: api
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: {{ .Values.image.command }}
+          {{- if .Values.image.command }}
+          command: {{ toYaml .Values.image.command | nindent 12 }}
+          {{- end }}
+          {{- if .Values.image.args }}
+          args: {{ toYaml .Values.image.args | nindent 12 }}
+          {{- end }}

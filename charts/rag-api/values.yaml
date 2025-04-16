@@ -2,7 +2,9 @@ image:
   repository: registry.access.redhat.com/ubi9/ubi
   tag: "9.5"
   pullPolicy: IfNotPresent
-  command: ["sleep", "infinity"]
+  command: ["/bin/bash", "-c"]
+  args: ["sleep infinity"]
+
 
 loader:
   image: quay.io/dminnear/vp-embeddings-loader
