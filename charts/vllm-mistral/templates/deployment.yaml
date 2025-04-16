@@ -30,13 +30,13 @@ spec:
           volumeMounts:
             - name: model-cache
               mountPath: {{ .Values.persistence.mountPath }}
+            - name: tmp-cache
+              mountPath: /.cache
           env:
             - name: HF_HUB_ENABLE_HF_TRANSFER
               value: "1"
             - name: HF_HOME
               value: {{ .Values.persistence.mountPath }}
-            - name: FLASHINFER_WORKSPACE_DIR
-              value: {{ printf "%s/flashinfer" .Values.persistence.mountPath }}
             - name: HF_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -48,6 +48,8 @@ spec:
         - name: model-cache
           persistentVolumeClaim:
             claimName: {{ include "vllm-mistral.fullname" . }}-model-cache
+        - name: tmp-cache
+          emptyDir: {}
       nodeSelector:
         {{- toYaml .Values.nodeSelector | nindent 8 }}
       tolerations:
