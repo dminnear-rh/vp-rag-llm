@@ -1,0 +1,31 @@
+clusterGroup:
+  name: prod
+
+  namespaces:
+    - rag-llm
+
+  projects:
+    - rag-llm
+
+  applications:
+    qdrant:
+      name: qdrant
+      namespace: rag-llm
+      project: rag-llm
+      repoURL: https://qdrant.github.io/qdrant-helm
+      chart: qdrant
+      chartVersion: 1.13.6
+      extraValueFiles:
+        - /values-qdrant.yaml
+
+    vllm-mistral:
+      name: vllm-mistral
+      namespace: rag-llm
+      project: rag-llm
+      path: charts/vllm-mistral
+
+    rag-api:
+      name: rag-api
+      namespace: rag-llm
+      project: rag-llm
+      path: charts/rag-api

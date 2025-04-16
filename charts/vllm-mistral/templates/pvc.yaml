@@ -1,0 +1,12 @@
+{{- if .Values.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "vllm-mistral.fullname" . }}-model-cache
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessModes | first }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.size }}
+{{- end }}

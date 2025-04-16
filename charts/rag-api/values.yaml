@@ -1,0 +1,10 @@
+image:
+  repository: busybox
+  tag: latest
+  pullPolicy: IfNotPresent
+  command: ["sleep", "3600"]
+
+loader:
+  image: quay.io/dminnear/vp-embeddings-loader
+  tag: MiniLM-L6-v2
+  pullPolicy: IfNotPresent

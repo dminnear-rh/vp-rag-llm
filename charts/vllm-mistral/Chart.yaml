@@ -1,0 +1,6 @@
+apiVersion: v2
+name: vllm-mistral
+description: Minimal Helm chart to run Mistral 7B with vLLM
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vllm-mistral.fullname" . }}
+  labels:
+    app: {{ include "vllm-mistral.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "vllm-mistral.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "vllm-mistral.name" . }}
+    spec:
+      containers:
+        - name: mistral-vllm
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "--model"
+            - {{ .Values.model.name | quote }}
+            - "--dtype"
+            - "bfloat16"
+            - "--served-model-name"
+            - "mistral"
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: model-cache
+              mountPath: {{ .Values.persistence.mountPath }}
+          env:
+            - name: HF_HUB_ENABLE_HF_TRANSFER
+              value: "1"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: model-cache
+          persistentVolumeClaim:
+            claimName: {{ include "vllm-mistral.fullname" . }}-model-cache
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}

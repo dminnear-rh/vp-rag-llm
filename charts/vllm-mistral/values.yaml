@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/vllm-project/vllm
+  tag: latest
+  pullPolicy: IfNotPresent
+
+model:
+  name: mistralai/Mistral-7B-Instruct-v0.3
+
+resources:
+  limits:
+    nvidia.com/gpu: 1
+    cpu: "4"
+    memory: 32Gi
+  requests:
+    nvidia.com/gpu: 1
+    cpu: "2"
+    memory: 24Gi
+
+persistence:
+  enabled: true
+  size: 30Gi
+  accessModes: ["ReadWriteOnce"]
+  mountPath: /root/.cache/huggingface
+
+nodeSelector:
+  nvidia.com/gpu.present: "true"
+
+service:
+  type: ClusterIP
+  port: 8000
