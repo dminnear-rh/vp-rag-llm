@@ -14,8 +14,6 @@ spec:
       labels:
         app: {{ include "vllm-mistral.name" . }}
     spec:
-      securityContext:
-        fsGroup: 1000670000
       containers:
         - name: mistral-vllm
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -37,6 +35,8 @@ spec:
               value: "1"
             - name: HF_HOME
               value: {{ .Values.persistence.mountPath }}
+            - name: FLASHINFER_CACHE_DIR
+              value: {{ printf "%s/flashinfer" .Values.persistence.mountPath }}
             - name: HF_TOKEN
               valueFrom:
                 secretKeyRef:
