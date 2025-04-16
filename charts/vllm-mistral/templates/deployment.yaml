@@ -41,3 +41,7 @@ spec:
             claimName: {{ include "vllm-mistral.fullname" . }}-model-cache
       nodeSelector:
         {{- toYaml .Values.nodeSelector | nindent 8 }}
+      tolerations:
+        - effect: NoSchedule
+          key: dedicated
+          value: gpu
