@@ -86,6 +86,10 @@ spec:
   daemonsets:
     rollingUpdate:
       maxUnavailable: '1'
+    tolerations:
+      - effect: NoSchedule
+        key: dedicated
+        value: gpu
     updateStrategy: RollingUpdate
   sandboxWorkloads:
     defaultWorkload: container
