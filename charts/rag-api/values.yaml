@@ -1,9 +1,7 @@
 image:
-  repository: registry.access.redhat.com/ubi9/ubi
-  tag: "9.5"
+  repository: quay.io/dminnear/vp-rag-llm-api
+  tag: latest
   pullPolicy: IfNotPresent
-  command: ["/bin/bash", "-c"]
-  args: ["sleep infinity"]
 
 
 loader:
