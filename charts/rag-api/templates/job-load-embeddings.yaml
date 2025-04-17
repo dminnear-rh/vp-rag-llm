@@ -3,12 +3,12 @@ kind: Job
 metadata:
   name: load-embeddings
   labels:
-    app: {{ include "rag-api.name" . }}
+    app: {{ include "rag-api.name" . }}-loader
 spec:
   template:
     metadata:
       labels:
-        app: {{ include "rag-api.name" . }}
+        app: {{ include "rag-api.name" . }}-loader
     spec:
       restartPolicy: Never
       containers:
