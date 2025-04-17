@@ -21,7 +21,7 @@ spec:
             - containerPort: 7860
           env:
             - name: RAG_API_URL
-              value: http://rag-api-rag-api:8080/rag-query/stream
+              value: http://rag-api-rag-api:8080
           imagePullPolicy: Always
 ---
 apiVersion: v1
