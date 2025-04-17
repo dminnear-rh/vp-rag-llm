@@ -1,10 +1,10 @@
 image:
   repository: quay.io/dminnear/vp-rag-llm-api
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 
 loader:
   image: quay.io/dminnear/vp-embeddings-loader
   tag: bge-large-en-v1.5
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
