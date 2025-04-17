@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gradio-chat
+  labels:
+    app: gradio-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gradio-chat
+  template:
+    metadata:
+      labels:
+        app: gradio-chat
+    spec:
+      containers:
+        - name: gradio
+          image: quay.io/dminnear/vp-rag-llm-ui:latest
+          ports:
+            - containerPort: 7860
+          env:
+            - name: RAG_API_URL
+              value: http://rag-api-rag-api:8080/rag-query/stream
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gradio-chat
+  labels:
+    app: gradio-chat
+spec:
+  selector:
+    app: gradio-chat
+  ports:
+    - protocol: TCP
+      port: 7860
+      targetPort: 7860
+  type: ClusterIP
