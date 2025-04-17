@@ -30,4 +30,4 @@ spec:
             - name: QDRANT_COLLECTION
               value: rag-collection
             - name: VLLM_URL
-              value: http://vllm-mistral:8000/v1/completions
+              value: http://vllm-mistral-vllm-mistral:8000/v1/completions
