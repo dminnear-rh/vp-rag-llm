@@ -24,6 +24,9 @@ spec:
           {{- if .Values.image.args }}
           args: {{ toYaml .Values.image.args | nindent 12 }}
           {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
           env:
             - name: QDRANT_URL
               value: http://qdrant:6333

@@ -8,7 +8,8 @@ spec:
   selector:
     app: {{ include "rag-api.name" . }}
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: http
   type: ClusterIP
