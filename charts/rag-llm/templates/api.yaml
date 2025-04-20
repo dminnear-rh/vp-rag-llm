@@ -40,7 +40,8 @@ spec:
                   name: hf-secret
                   key: hf_token
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           resources:
             limits:
               cpu: "2"
