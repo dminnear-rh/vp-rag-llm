@@ -49,11 +49,11 @@ clusterGroup:
       extraValueFiles:
         - /values-qdrant.yaml
 
-    vllm-mistral:
-      name: vllm-mistral
+    vllm:
+      name: vllm
       namespace: rag-llm
       project: rag-llm
-      path: charts/vllm-mistral
+      path: charts/vllm
 
     rag-api:
       name: rag-api

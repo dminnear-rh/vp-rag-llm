@@ -3,16 +3,34 @@ kind: Job
 metadata:
   name: load-embeddings
   labels:
-    app: {{ include "rag-api.name" . }}-loader
+    app: load-embeddings
 spec:
   template:
     metadata:
       labels:
-        app: {{ include "rag-api.name" . }}-loader
+        app: load-embeddings
     spec:
       restartPolicy: Never
       containers:
         - name: embeddings-loader
           image: "{{ .Values.loader.image }}:{{ .Values.loader.tag }}"
           imagePullPolicy: {{ .Values.loader.pullPolicy }}
-  backoffLimit: 1
+          env:
+            - name: TEMP_DIR
+              value: "/tmp"
+            - name: LOG_LEVEL
+              value: "info"
+            - name: DB_TYPE
+              value: "{{ .Values.loader.dbType }}"
+            - name: QDRANT_URL
+              value: "{{ .Values.qdrant.url }}"
+            - name: QDRANT_COLLECTION
+              value: "{{ .Values.qdrant.collection }}"
+            - name: REPO_SOURCES
+              value: '{{ .Values.loader.repoSources | toJson }}'
+            - name: WEB_SOURCES
+              value: '{{ .Values.loader.webSources | toJson }}'
+            - name: CHUNK_SIZE
+              value: "{{ .Values.chunking.size }}"
+            - name: CHUNK_OVERLAP
+              value: "{{ .Values.chunking.overlap }}"

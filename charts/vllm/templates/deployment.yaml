@@ -1,32 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "vllm-mistral.fullname" . }}
+  name: {{ include "vllm.fullname" . }}
   labels:
-    app: {{ include "vllm-mistral.name" . }}
+    app: {{ include "vllm.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "vllm-mistral.name" . }}
+      app: {{ include "vllm.name" . }}
   template:
     metadata:
       labels:
-        app: {{ include "vllm-mistral.name" . }}
+        app: {{ include "vllm.name" . }}
     spec:
       containers:
-        - name: mistral-vllm
+        - name: vllm
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - "--model"
             - {{ .Values.model.name | quote }}
             - "--dtype"
-            - "bfloat16"
+            - {{ .Values.model.dtype | quote }}
             - "--served-model-name"
-            - "mistral"
+            - {{ .Values.model.servedName | quote }}
             - "--tokenizer-mode"
-            - "mistral"
+            - {{ .Values.model.tokenizerMode | quote }}
+            {{- range .Values.extraArgs }}
+            - {{ . | quote }}
+            {{- end }}
           ports:
             - containerPort: 8000
           volumeMounts:
@@ -47,7 +50,7 @@ spec:
       volumes:
         - name: model-cache
           persistentVolumeClaim:
-            claimName: {{ include "vllm-mistral.fullname" . }}-model-cache
+            claimName: {{ include "vllm.fullname" . }}-model-cache
       nodeSelector:
         {{- toYaml .Values.nodeSelector | nindent 8 }}
       tolerations:

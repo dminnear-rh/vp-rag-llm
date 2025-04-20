@@ -7,6 +7,11 @@ image:
 
 model:
   name: mistralai/Mistral-7B-Instruct-v0.3
+  servedName: mistral
+  dtype: bfloat16
+  tokenizerMode: mistral
+
+extraArgs: []  # e.g., ["--max-model-len=32768", "--disable-log-requests"]
 
 resources:
   limits:
@@ -35,3 +40,19 @@ secretStore:
   name: vault-backend
   kind: ClusterSecretStore
   remoteKey: secret/data/global/hfmodel
+
+# model:
+#   name: meta-llama/Llama-4-Scout-17B-16E-Instruct
+#   servedName: llama-4
+#   dtype: bfloat16
+#   tokenizerMode: auto
+
+# resources:
+#   limits:
+#     nvidia.com/gpu: 4
+#     cpu: "6"
+#     memory: 64Gi
+#   requests:
+#     nvidia.com/gpu: 4
+#     cpu: "4"
+#     memory: 48Gi

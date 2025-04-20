@@ -1,10 +1,10 @@
 {{/* Generate chart name */}}
-{{- define "vllm-mistral.name" -}}
+{{- define "vllm.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
 {{/* Generate full name */}}
-{{- define "vllm-mistral.fullname" -}}
+{{- define "vllm.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else }}

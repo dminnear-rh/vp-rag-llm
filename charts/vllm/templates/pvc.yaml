@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "vllm-mistral.fullname" . }}-model-cache
+  name: {{ include "vllm.fullname" . }}-model-cache
 spec:
   accessModes:
     - {{ .Values.persistence.accessModes | first }}
