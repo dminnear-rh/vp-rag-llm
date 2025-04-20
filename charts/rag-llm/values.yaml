@@ -6,9 +6,23 @@ api:
   models:
     - name: mistral
       url: http://vllm-vllm:8000
-      apiKey: ""
       modelType: vllm
       maxTotalTokens: 32768
+
+    - name: o4-mini
+      url: https://api.openai.com/v1/chat/completions
+      modelType: openai
+      maxTotalTokens: 200000
+
+    - name: gpt-4o
+      url: https://api.openai.com/v1/chat/completions
+      modelType: openai
+      maxTotalTokens: 128000
+
+    - name: gpt-4o-mini
+      url: https://api.openai.com/v1/chat/completions
+      modelType: openai
+      maxTotalTokens: 128000
 
 qdrant:
   url: http://qdrant:6333
@@ -44,3 +58,8 @@ ui:
   image: quay.io/dminnear/vp-rag-llm-ui
   tag: latest
   pullPolicy: Always
+
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+  remoteKey: secret/data/global/openai
