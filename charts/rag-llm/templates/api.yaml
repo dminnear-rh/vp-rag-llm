@@ -24,7 +24,7 @@ spec:
             - name: QDRANT_COLLECTION
               value: "{{ .Values.qdrant.collection }}"
             - name: DEFAULT_MODEL
-              value: "{{ .Values.api.models | first | dig "name" }}"
+              value: "{{ (index .Values.api.models 0).name }}"
             - name: VLLM_MODELS
               value: '{{ .Values.api.models | toJson }}'
             - name: LOG_LEVEL
