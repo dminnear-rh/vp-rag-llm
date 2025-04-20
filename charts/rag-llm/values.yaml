@@ -1,7 +1,14 @@
-image:
-  repository: quay.io/dminnear/vp-rag-llm-api
+api:
+  image: quay.io/dminnear/vp-rag-llm-api
   tag: latest
   pullPolicy: Always
+
+  models:
+    - name: mistral
+      url: http://vllm-vllm:8000
+      apiKey: ""
+      modelType: vllm
+      maxTotalTokens: 32768
 
 qdrant:
   url: http://qdrant:6333
@@ -32,3 +39,8 @@ loader:
 chunking:
   size: 1024
   overlap: 40
+
+ui:
+  image: quay.io/dminnear/vp-rag-llm-ui
+  tag: latest
+  pullPolicy: Always

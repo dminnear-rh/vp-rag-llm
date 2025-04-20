@@ -55,11 +55,11 @@ clusterGroup:
       project: rag-llm
       path: charts/vllm
 
-    rag-api:
-      name: rag-api
+    rag-llm:
+      name: rag-llm
       namespace: rag-llm
       project: rag-llm
-      path: charts/rag-api
+      path: charts/rag-llm
 
     nfd:
       name: nfd

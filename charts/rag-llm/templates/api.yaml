@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-api
+  labels:
+    app: rag-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-api
+  template:
+    metadata:
+      labels:
+        app: rag-api
+    spec:
+      containers:
+        - name: api
+          image: "{{ .Values.api.image }}:{{ .Values.api.tag }}"
+          imagePullPolicy: {{ .Values.api.pullPolicy }}
+          env:
+            - name: QDRANT_URL
+              value: "{{ .Values.qdrant.url }}"
+            - name: QDRANT_COLLECTION
+              value: "{{ .Values.qdrant.collection }}"
+            - name: DEFAULT_MODEL
+              value: "{{ .Values.api.models | first | dig "name" }}"
+            - name: VLLM_MODELS
+              value: '{{ .Values.api.models | toJson }}'
+            - name: LOG_LEVEL
+              value: "info"
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-api
+  labels:
+    app: rag-api
+spec:
+  selector:
+    app: rag-api
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: http
+  type: ClusterIP

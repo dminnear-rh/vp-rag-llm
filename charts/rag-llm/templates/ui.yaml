@@ -16,13 +16,17 @@ spec:
     spec:
       containers:
         - name: gradio
-          image: quay.io/dminnear/vp-rag-llm-ui:latest
+          image: "{{ .Values.ui.image }}:{{ .Values.ui.tag }}"
           ports:
             - containerPort: 7860
           env:
             - name: RAG_API_URL
-              value: http://rag-api-rag-api:8080
+              value: http://rag-api:8080
           imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
 ---
 apiVersion: v1
 kind: Service
