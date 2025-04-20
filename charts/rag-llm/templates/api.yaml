@@ -34,6 +34,11 @@ spec:
                 secretKeyRef:
                   name: openai-secret
                   key: api_key
+            - name: HF_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hf-secret
+                  key: hf_token
           ports:
             - containerPort: 8080
           resources:
