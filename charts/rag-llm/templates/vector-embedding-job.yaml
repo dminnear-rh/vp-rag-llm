@@ -34,3 +34,5 @@ spec:
               value: "{{ .Values.chunking.size }}"
             - name: CHUNK_OVERLAP
               value: "{{ .Values.chunking.overlap }}"
+            - name: EMBEDDING_MODEL
+              value: "{{ .Values.embedder.model }}"

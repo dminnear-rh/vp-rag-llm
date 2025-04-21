@@ -39,6 +39,10 @@ spec:
                 secretKeyRef:
                   name: hf-secret
                   key: hf_token
+            - name: EMBEDDING_MODEL
+              value: "{{ .Values.embedder.model }}"
+            - name: CROSS_ENCODER_MODEL
+              value: "{{ .Values.api.crossEncoderModel }}"
           ports:
             - name: http
               containerPort: 8080
