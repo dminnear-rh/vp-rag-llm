@@ -9,11 +9,6 @@ api:
       model_type: vllm
       max_total_tokens: 32768
 
-    - name: o4-mini
-      url: https://api.openai.com/v1/chat/completions
-      model_type: openai
-      max_total_tokens: 200000
-
     - name: gpt-4o
       url: https://api.openai.com/v1/chat/completions
       model_type: openai
