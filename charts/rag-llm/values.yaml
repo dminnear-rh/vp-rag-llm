@@ -48,8 +48,8 @@ loader:
     - https://www.spiceworks.com/tech/edge-computing/guest-article/how-to-build-validated-patterns-for-continuous-ai-deployment-at-the-edge/
 
 chunking:
-  size: 20480
-  overlap: 2048
+  size: 2048
+  overlap: 50
 
 ui:
   image: quay.io/dminnear/vp-rag-llm-ui
